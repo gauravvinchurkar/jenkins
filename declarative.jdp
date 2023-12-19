@@ -1,0 +1,21 @@
+pipeline {  
+   agent any  
+   stages {   
+     stage("pull-code") {     
+       steps {       
+        git 'https://github.com/gauravvinchurkar/jenkins.git'      
+         }        
+       }      
+     }
+     stage("test") {
+       steps{  
+         sh 'pwd'
+       }      
+     }
+     stage("deploy") {
+        steps {
+            echo 'deployed'
+        }
+     }
+   } 
+ 
