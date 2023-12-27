@@ -1,0 +1,12 @@
+pipeline {  
+   agent any  
+   stages {   
+     stage("pull-code") {     
+       steps {       
+      echo "Build no is ${env.Build_ID}"
+      echo "NODE name is ${env.NODE_NAME}"
+      echo "Job from branch ${env.GIT_BRANCH}"      
+         }        
+       }      
+     }
+}

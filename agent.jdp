@@ -1,0 +1,37 @@
+pipeline {  
+   agent any  
+   environment {
+    test_ip =
+    prod_id = 
+   }
+   stages {   
+     stage("pull-code") {
+        agent {
+            label "linux-java9"
+        }
+        steps {
+            sh 'printenv'
+        }
+     }
+     stage("printenv") {
+        environment {
+            server_name = "linux"
+        }
+     }    
+       steps {       
+      echo "Build no is ${env.Build_ID}"
+      echo "NODE name is ${env.NODE_NAME}"
+      echo "Job from branch ${env.GIT_BRANCH}"      
+         }        
+       }
+     stage(prod_id) {
+        agent {
+            label "master"
+        }
+        steps {
+            echo "prod server ip is ${env.prod_id}" 
+            echo "test env ip ${env.test_ip}"
+            echo "node name ${env.NODE_LABELS}"
+        }
+     }     
+     }
